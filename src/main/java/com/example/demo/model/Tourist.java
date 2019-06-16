@@ -19,7 +19,7 @@ public class Tourist implements Serializable {
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
-    @Enumerated
+    @Enumerated (EnumType.STRING)
     @Column(name = "gender")
     private GenderType gender;
     @Column(name = "country")
@@ -28,11 +28,9 @@ public class Tourist implements Serializable {
     private String remarks;
     @Column(name = "dateOfBirth")
     private Date dateOfBirth;
-    @OneToMany(mappedBy ="tourist")
+    @ManyToMany
     private List<Flight> flightList;
-    @ManyToOne
-    @JoinColumn (name = "flight_id")
-    private Flight flight;
+
 
     public Tourist(String firstName, String lastName, GenderType gender, String country, String remarks, Date dateOfBirth, List<Flight> flightList) {
         this.firstName = firstName;
@@ -43,4 +41,7 @@ public class Tourist implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.flightList = flightList;
     }
+public Tourist(){
+
+}
 }

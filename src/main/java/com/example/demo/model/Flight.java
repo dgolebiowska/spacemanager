@@ -21,18 +21,20 @@ public class Flight implements Serializable {
     private LocalDateTime arrivalDate;
     @Column (name = "numberOfSeats")
     private int numberOfSeats;
-    @OneToMany (mappedBy ="flight")
+    @ManyToMany
     private List<Tourist> touristList;
     @Column (name = "ticketPrice")
     private float ticketPrice;
-    @ManyToOne
-    @JoinColumn(name = "tourist_id")
-    private Tourist tourist;
 
-    public Flight(LocalDateTime arrivalDate, int numberOfSeats, List<Tourist> touristList, float ticketPrice) {
+
+    public Flight(LocalDateTime departureDate, LocalDateTime arrivalDate, int numberOfSeats, List<Tourist> touristList, float ticketPrice) {
+        this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.numberOfSeats = numberOfSeats;
         this.touristList = touristList;
         this.ticketPrice = ticketPrice;
+    }
+    public Flight(){
+
     }
 }
